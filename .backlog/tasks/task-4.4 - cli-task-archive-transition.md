@@ -1,0 +1,25 @@
+---
+id: task-4.4
+title: "CLI: Task Archiving and State Transitions"
+status: "To Do"
+assignee: ""
+reporter: "@MrLesk"
+created_date: 2025-06-04
+labels: ["cli", "command"]
+milestone: "M1 - CLI"
+dependencies: ["task-4.3"]
+---
+
+## Description
+
+Add commands for finalizing and moving tasks:
+
+- `backlog task archive <task-id>` and `backlog draft archive <task-id>`
+- `backlog draft promote` (move a draft to tasks)
+- `backlog task demote` (move a task back to drafts)
+
+## Acceptance Criteria
+
+- [ ] Archived tasks are moved to `.backlog/archive/` with history preserved.
+- [ ] Promote/demote commands relocate files between drafts and tasks.
+- [ ] Commits clearly state the action performed.

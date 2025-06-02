@@ -1,0 +1,184 @@
+# Cursor Agent Rules for Backlog.md Project
+# These rules are designed to ensure high-quality contributions and maintain project consistency
+
+## Table of Contents
+1. Project Structure and Navigation
+2. Task Management
+3. Documentation
+4. Code Quality and Testing
+5. Git Workflow
+6. AI Agent Guidelines
+7. Configuration Management
+8. Review and Communication
+9. Error Handling and Logging
+10. Performance and Security
+11. Maintenance and Dependencies
+12. Accessibility and Internationalization
+13. Version Control and Releases
+14. Emergency Procedures
+15. Project-Specific Rules
+16. Glossary
+17. Templates and Examples
+
+---
+
+## 1. Project Structure and Navigation
+1.1 Always check the project structure in `AGENTS.md` before making changes
+1.2 Follow the directory structure under `.backlog/` (see [Project Structure](./AGENTS.md#structure))
+- Never modify files outside the designated project directories
+- Always verify file locations before making changes
+
+## 2. Task Management
+- Always check .backlog/tasks/ for current tasks before starting work
+- Reference task IDs in all commit messages and PR titles
+- Follow the task status workflow defined in config.yml
+- Never modify task files directly - use the backlog CLI commands
+- When creating new tasks, ensure they follow the established format
+- Subtasks must use decimal numbering (e.g., task-4.1) to indicate their parentage.
+- Subtasks are created using the CLI with the --parent <task-id> flag; the next decimal ID is assigned automatically.
+- Always reference subtasks by their full decimal ID in commit messages, PR titles, and documentation.
+- Subtasks are stored in the same .backlog/tasks/ directory as main tasks.
+
+## 3. Documentation
+3.1 All documentation must be in Markdown format
+3.2 Update relevant `readme.md` files when making changes
+3.3 Document architectural decisions in `.backlog/decisions/`
+3.4 Maintain clear and concise documentation
+3.5 Include examples in documentation where appropriate 
+
+## 4. Code Quality and Testing
+- Ensure all code changes are properly tested
+- Follow the project's coding style and conventions
+- Write clear, self-documenting code
+- Include appropriate error handling
+- Add comments for complex logic
+
+## 5. Git Workflow
+- Always check git status before committing
+- Use branch names that reflect the task being worked on (tasks/<task-id> feature description)
+- Keep commits atomic and focused
+- Write clear, descriptive commit messages
+- Reference task IDs in commit messages
+
+## 6. AI Agent Guidelines
+6.1 Always verify task requirements before implementation
+6.2 Use semantic search to understand existing code
+6.3 Check for similar implementations before creating new features
+6.4 Document any assumptions in PR descriptions and `.backlog/decisions/`
+6.5 Consider edge cases and error scenarios
+
+## 7. Configuration Management
+- Never modify config.yml directly
+- Use backlog config commands for configuration changes
+- Maintain backward compatibility when possible
+- Document configuration changes in decisions/
+
+## 8. Review and Communication
+- Ensure all changes are properly documented
+- Verify that changes don't break existing functionality
+- Check for potential security implications
+- Consider performance impact of changes
+- Validate against project requirements
+- Use clear and professional language in comments and documentation
+- Document any questions or concerns in task comments
+- Keep commit messages and PR descriptions informative
+- Reference relevant documentation when making changes
+
+## 9. Error Handling and Logging
+- Implement proper error handling for all new features
+- Include appropriate logging
+- Consider user experience in error scenarios
+- Document error cases and recovery procedures
+
+## 10. Performance and Security
+- Consider performance implications of changes
+- Optimize code when necessary
+- Document performance considerations
+- Test with realistic data volumes
+- Follow security best practices
+- Validate all user inputs
+- Consider potential security implications
+- Document security-related decisions
+
+## 11. Maintenance and Dependencies
+- Keep dependencies up to date
+- Remove deprecated code
+- Maintain backward compatibility
+- Document maintenance procedures
+- Document all new dependencies
+- Justify dependency additions
+- Consider impact on project size
+- Check for license compatibility
+
+## 12. Accessibility and Internationalization
+- Ensure all features are accessible
+- Follow accessibility guidelines
+- Test with accessibility tools
+- Document accessibility considerations
+- Support multiple languages where appropriate
+- Use proper character encoding
+- Consider cultural differences
+- Document internationalization requirements
+
+## 13. Version Control and Releases
+- Follow semantic versioning
+- Document breaking changes
+- Maintain changelog
+- Tag releases appropriately
+
+## 14. Emergency Procedures
+- Document emergency procedures
+- Know how to rollback changes
+- Have backup procedures
+- Document recovery steps
+
+## 15. Project-Specific Rules
+- Follow Backlog.md CLI conventions
+- Use proper task status transitions
+- Maintain task history
+- Follow project naming conventions
+- Use appropriate labels for tasks
+- Keep task descriptions clear and complete
+- Follow the established workflow
+- Use proper task prioritization
+- Maintain task dependencies
+- Follow project branching strategy
+- Add a line referencing subtask conventions and referencing
+
+## 16. Glossary
+- Add a glossary of project-specific terms and acronyms
+- Add "Subtask" entry: decimal numbering, CLI creation, referencing, and storage
+
+## 17. Templates and Examples
+- Add a `docs/` directory for guides (onboarding, semantic search, coding style, etc.)
+- Automate rule enforcement where possible (e.g., with pre-commit hooks, CI checks)
+- Regularly review and update rules to reflect project evolution and lessons learned
+
+# Code Review
+- Review code for:
+  - Functionality
+  - Performance
+  - Security
+  - Maintainability
+  - Documentation
+  - Testing
+  - Accessibility
+  - Internationalization
+
+# Emergency Procedures
+- Document emergency procedures
+- Know how to rollback changes
+- Have backup procedures
+- Document recovery steps
+
+# Project-Specific Rules
+- Follow Backlog.md CLI conventions
+- Use proper task status transitions
+- Maintain task history
+- Follow project naming conventions
+- Use appropriate labels for tasks
+- Keep task descriptions clear and complete
+- Follow the established workflow
+- Use proper task prioritization
+- Maintain task dependencies
+- Follow project branching strategy 
