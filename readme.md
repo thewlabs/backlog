@@ -109,3 +109,23 @@ Example:
 ```shell
 backlog config set default_assignee @aiSupervisor
 ```
+
+## Development
+
+Run these commands to bootstrap the project:
+
+```bash
+bun install
+```
+
+Run tests:
+
+```bash
+bun test
+```
+
+Format and lint:
+
+```bash
+npx biome check .
+```

@@ -16,8 +16,8 @@ Initialize the actual Bun + TypeScript project. Configure linters (Biome), basic
 
 ## Acceptance Criteria
 
-- [ ] Bun project initialized (`bun init`).
-- [ ] TypeScript configured.
-- [ ] Biome configured and working.
-- [ ] Basic `bun test` example runs.
-- [ ] Project `README.md` created.
+- [x] Bun project initialized (`bun init`).
+- [x] TypeScript configured.
+- [x] Biome configured and working.
+- [x] Basic `bun test` example runs.
+- [x] Project `README.md` created.

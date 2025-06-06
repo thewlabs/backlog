@@ -1,0 +1,19 @@
+{
+	"name": "backlog.md",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/bun": "^1.2.15"
+	},
+	"peerDependencies": {
+		"typescript": "5"
+	},
+	"scripts": {
+		"test": "bun test",
+		"format": "biome format --write .",
+		"lint": "biome lint --write .",
+		"check": "biome check ."
+	}
+}
