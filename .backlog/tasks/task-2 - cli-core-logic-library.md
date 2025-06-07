@@ -1,7 +1,7 @@
 ---
 id: task-2
 title: "CLI: Design & Implement Core Logic Library"
-status: "To Do"
+status: "Done"
 assignee: ""
 reporter: "@MrLesk"
 created_date: 2025-06-03
@@ -22,7 +22,7 @@ Develop the central TypeScript library that handles:
 
 ## Acceptance Criteria
 
-- [ ] Clear interface for file operations.
-- [ ] Robust Markdown parsing/serialization for Backlog task files.
-- [ ] Wrapper functions for essential Git commands (e.g., commit changes to a task file).
-- [ ] Core data models (Task, DecisionLog, Document) defined.
+- [x] Clear interface for file operations.
+- [x] Robust Markdown parsing/serialization for Backlog task files.
+- [x] Wrapper functions for essential Git commands (e.g., commit changes to a task file).
+- [x] Core data models (Task, DecisionLog, Document) defined.

@@ -1,11 +1,13 @@
 {
 	"name": "backlog.md",
-	"module": "index.ts",
+	"module": "src/index.ts",
 	"type": "module",
 	"private": true,
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@types/bun": "^1.2.15"
+		"@types/bun": "1.2.15",
+		"husky": "9.1.7",
+		"lint-staged": "16.1.0"
 	},
 	"peerDependencies": {
 		"typescript": "5"
@@ -14,6 +16,14 @@
 		"test": "bun test",
 		"format": "biome format --write .",
 		"lint": "biome lint --write .",
-		"check": "biome check ."
+		"check": "biome check .",
+		"prepare": "husky"
+	},
+	"lint-staged": {
+		"*.{ts,js,json}": ["biome check --write --files-ignore-unknown=true"],
+		"src/**/*.{ts,js}": ["biome check --write --files-ignore-unknown=true"]
+	},
+	"dependencies": {
+		"gray-matter": "^4.0.3"
 	}
 }

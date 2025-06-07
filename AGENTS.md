@@ -2,11 +2,11 @@
 
 backlog.md/ (Root folder for "Backlog.md" project)
 └── .backlog/ ("Backlog.md" folder for managing tasks and docs)
-    ├── draft/ (list of tasks that are not ready to be implemented)
+    ├── drafts/ (list of tasks that are not ready to be implemented)
     ├── tasks/ (list of tasks that are ready to be implemented)
     ├── archive/ (tasks that are no longer relevant)
     │   ├── tasks/
-    │   └── draft/
+    │   └── drafts/
     ├── docs/ (project documentation)
     ├── decisions/ (team decisions regarding architecture/technologies)
     └── config.yml ("Backlog.md" configuration file)

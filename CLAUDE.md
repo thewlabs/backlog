@@ -21,6 +21,7 @@ This is the **Backlog.md** project - a lightweight git + markdown project manage
 
 ### Core Structure
 - **CLI Tool**: Built with Bun and TypeScript as a global npm package (`@backlog.md`)
+- **Source Code**: Located in `/src` directory with modular TypeScript structure
 - **Task Management**: Uses markdown files in `.backlog/` directory structure
 - **Workflow**: Git-integrated with task IDs referenced in commits and PRs
 
@@ -41,5 +42,6 @@ This is the **Backlog.md** project - a lightweight git + markdown project manage
 - **Formatting**: Biome with tab indentation and double quotes
 - **Linting**: Biome recommended rules
 - **Testing**: Bun's built-in test runner
+- **Pre-commit**: Husky + lint-staged automatically runs Biome checks before commits
 
-Always run `bun run check` before committing to ensure code quality standards are met.
+The pre-commit hook automatically runs `biome check --write` on staged files to ensure code quality. If linting errors are found, the commit will be blocked until fixed.
