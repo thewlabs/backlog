@@ -71,20 +71,23 @@ jobs:
           cp scripts/cli.cjs dist/cli.js
           cp scripts/resolveBinary.cjs dist/resolveBinary.cjs
           chmod +x dist/cli.js
-      - name: Create npm-ready package.json
-        shell: bash
-        run: |
-          TAG="${GITHUB_REF##refs/tags/v}"
-          jq 'del(.devDependencies,.scripts.prepare,.scripts.preinstall,.scripts.postinstall,.type) |
-              .version = "'$TAG'" |
-              .bin = {backlog:"cli.js"} |
-              .files = ["cli.js","resolveBinary.cjs","package.json","README.md","LICENSE"] |
-              .optionalDependencies."backlog.md-linux-x64" = "'$TAG'" |
-              .optionalDependencies."backlog.md-linux-arm64" = "'$TAG'" |
-              .optionalDependencies."backlog.md-darwin-x64" = "'$TAG'" |
-              .optionalDependencies."backlog.md-darwin-arm64" = "'$TAG'" |
-              .optionalDependencies."backlog.md-windows-x64" = "'$TAG'"' package.json > dist/package.json
-          cp LICENSE README.md dist/ 2>/dev/null || true
+          - name: Create npm-ready package.json
+            shell: bash
+            run: |
+              TAG="${GITHUB_REF##refs/tags/v}"
+              jq 'del(.devDependencies,.scripts.prepare,.scripts.preinstall,.scripts.postinstall,.type) |
+                  .version = "'$TAG'" |
+                  .bin = {backlog:"cli.js"} |
+                  .files = ["cli.js","resolveBinary.cjs","package.json","README.md","LICENSE"] |
+                  .dependencies = {
+                    "backlog.md-linux-x64"  : "'$TAG'",
+                    "backlog.md-linux-arm64": "'$TAG'",
+                    "backlog.md-darwin-x64" : "'$TAG'",
+                    "backlog.md-darwin-arm64": "'$TAG'",
+                    "backlog.md-windows-x64": "'$TAG'"
+                  }' \
+                  package.json > dist/package.json
+              cp LICENSE README.md dist/ 2>/dev/null || true
       - uses: actions/setup-node@v4
         with:
           node-version: 20
