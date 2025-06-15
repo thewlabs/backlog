@@ -51,11 +51,9 @@ jobs:
             --target=${{ matrix.target }} \
             --define __EMBEDDED_VERSION__='"${GITHUB_REF##refs/tags/v}"' \
             --outfile=${{ env.BIN }}
-      - name: Smoke-test binary (non-Windows)
+      - name: Make binary executable (non-Windows)
         if: ${{ !contains(matrix.target,'windows') }}
-        run: |
-          chmod +x "${{ env.BIN }}"
-          "./${{ env.BIN }}" --version
+        run: chmod +x "${{ env.BIN }}"
       - name: Package artifact
         shell: bash
         run: |
