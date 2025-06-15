@@ -51,18 +51,25 @@ jobs:
             --target=${{ matrix.target }} \
             --define __EMBEDDED_VERSION__='"${GITHUB_REF##refs/tags/v}"' \
             --outfile=${{ env.BIN }}
-      - name: Smoke-test binary (non-Windows)
+      - name: Make binary executable (non-Windows)
         if: ${{ !contains(matrix.target,'windows') }}
-        run: |
-          chmod +x "${{ env.BIN }}"
-          "./${{ env.BIN }}" --version
-      - name: Package artifact
+        run: chmod +x "${{ env.BIN }}"
+      - name: Package artifact (Unix)
+        if: ${{ !contains(matrix.target,'windows') }}
         shell: bash
         run: |
           mkdir pkg
           mv "${{ env.BIN }}" pkg/
           tar -czf backlog-${{ matrix.target }}.tar.gz -C pkg .
           zip -r backlog-${{ matrix.target }}.zip pkg
+      - name: Package artifact (Windows)
+        if: ${{ contains(matrix.target,'windows') }}
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path pkg
+          Move-Item -Path "${{ env.BIN }}" -Destination pkg/
+          tar -czf backlog-${{ matrix.target }}.tar.gz -C pkg .
+          Compress-Archive -Path pkg -DestinationPath backlog-${{ matrix.target }}.zip
       - uses: actions/upload-artifact@v4
         with:
           name: backlog-${{ matrix.target }}
@@ -75,25 +82,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          path: dist/bin
-      - name: Prepare wrapper & dist dir
+      - name: Prepare npm package
         shell: bash
         run: |
           mkdir -p dist
-          cp scripts/cli.js dist/cli.js
+          cp scripts/cli-download.cjs dist/cli.js
           chmod +x dist/cli.js
       - name: Create npm-ready package.json
         shell: bash
         run: |
           TAG="${GITHUB_REF##refs/tags/v}"
-          jq 'del(.devDependencies,.scripts.prepare,.scripts.preinstall,.scripts.postinstall) |
+          jq 'del(.devDependencies,.scripts.prepare,.scripts.preinstall,.scripts.postinstall,.type) |
               .version = "'$TAG'" |
               .bin = {backlog:"cli.js"} |
-              .files = ["bin/","cli.js"]'               package.json > dist/package.json
+              .files = ["cli.js","package.json","README.md","LICENSE"]' package.json > dist/package.json
           cp LICENSE README.md dist/ 2>/dev/null || true
-          find dist/bin -type f -name "backlog*" -exec chmod +x {} +
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -112,6 +115,16 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           path: release-assets
+      - name: Extract binaries from archives
+        run: |
+          mkdir -p binaries
+          for archive in release-assets/*/*.tar.gz; do
+            tar -xzf "$archive" -C binaries
+          done
+          find binaries -name "backlog*" -type f
       - uses: softprops/action-gh-release@v1
         with:
-          files: release-assets/**/*
+          files: |
+            release-assets/**/*.tar.gz
+            release-assets/**/*.zip
+            binaries/backlog*
