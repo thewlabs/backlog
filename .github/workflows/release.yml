@@ -108,8 +108,12 @@ jobs:
               # Find the binary file (backlog or backlog.exe)
               binary=$(find "$dir" -name "backlog*" -type f)
               if [ -n "$binary" ]; then
-                # Copy with target-specific name
-                cp "$binary" "binaries/backlog-${target}"
+                # Preserve .exe extension for Windows binaries
+                if [[ "$target" == *"windows"* ]] && [[ "$binary" == *".exe" ]]; then
+                  cp "$binary" "binaries/backlog-${target}.exe"
+                else
+                  cp "$binary" "binaries/backlog-${target}"
+                fi
               fi
             fi
           done
