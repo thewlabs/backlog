@@ -1,7 +1,7 @@
 /* Enhanced task viewer for displaying task details in a structured format */
 
 import { stdout as output } from "node:process";
-import blessed from "blessed";
+import blessed from "bbblessed";
 import { Core } from "../core/backlog.ts";
 import type { Task } from "../types/index.ts";
 import { formatChecklistItem, parseCheckboxLine } from "./checklist.ts";

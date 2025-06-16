@@ -1,5 +1,5 @@
 /* Heading helper component for consistent terminal UI styling */
-import blessed from "blessed";
+import blessed from "bbblessed";
 
 export type HeadingLevel = 1 | 2 | 3;
 

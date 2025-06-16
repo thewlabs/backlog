@@ -1,4 +1,4 @@
-import blessed from "blessed";
+import blessed from "bbblessed";
 import { createScreen } from "./tui.ts";
 
 export interface LoadingScreen {

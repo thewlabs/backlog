@@ -7,15 +7,34 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { stdin as input, stdout as output } from "node:process";
-import blessed from "blessed";
+import blessed from "bbblessed";
 
 // Helper to create a blessed screen with Tput disabled.
 // This avoids looking up terminfo files which are not
 // bundled with the compiled Windows binary.
 // biome-ignore lint/suspicious/noExplicitAny: blessed types are loosely defined
 export function createScreen(options: any = {}): any {
-	const program = blessed.program({ tput: false });
-	return blessed.screen({ smartCSR: true, program, ...options });
+	// On Windows, we need to ensure tput is completely disabled
+	// to prevent terminfo file loading errors
+	// biome-ignore lint/suspicious/noExplicitAny: blessed types are loosely defined
+	const programOptions: any = {
+		tput: false,
+		termcap: false,
+		extended: false,
+	};
+
+	// For Windows, also disable terminal detection that might trigger tput
+	if (process.platform === "win32") {
+		programOptions.terminal = "dumb";
+	}
+
+	const program = blessed.program(programOptions);
+	return blessed.screen({
+		smartCSR: true,
+		program,
+		tput: false,
+		...options,
+	});
 }
 
 // Ask the user for a single line of input.  Falls back to readline.
