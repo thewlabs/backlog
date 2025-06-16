@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import blessed from "blessed";
+import blessed from "bbblessed";
 import { WRAP_LIMIT } from "../constants/index.ts";
 import { createScreen } from "../ui/tui.ts";
 

@@ -4,7 +4,7 @@
  */
 
 import { stdout as output } from "node:process";
-import blessed from "blessed";
+import blessed from "bbblessed";
 import { formatHeading } from "../heading.ts";
 import { createScreen } from "../tui.ts";
 

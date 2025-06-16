@@ -1,5 +1,5 @@
 import { join } from "node:path";
-import blessed from "blessed";
+import blessed from "bbblessed";
 import { type BoardLayout, compareIds, generateKanbanBoard } from "../board.ts";
 import { Core } from "../core/backlog.ts";
 import type { Task } from "../types/index.ts";
