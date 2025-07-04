@@ -46,14 +46,15 @@ jobs:
       - name: Compile standalone binary
         shell: bash
         run: |
-          bun build src/cli.ts --compile --minify --sourcemap --target=${{ matrix.target }} --define __EMBEDDED_VERSION__="\"${GITHUB_REF##refs/tags/v}\"" --outfile=${{ env.BIN }}
+          mkdir -p dist
+          bun build src/cli.ts --compile --minify --sourcemap --target=${{ matrix.target }} --define __EMBEDDED_VERSION__="\"${GITHUB_REF##refs/tags/v}\"" --outfile=dist/${{ env.BIN }}
       - name: Make binary executable (non-Windows)
         if: ${{ !contains(matrix.target,'windows') }}
-        run: chmod +x "${{ env.BIN }}"
+        run: chmod +x "dist/${{ env.BIN }}"
       - uses: actions/upload-artifact@v4
         with:
           name: backlog-${{ matrix.target }}
-          path: ${{ env.BIN }}
+          path: dist/${{ env.BIN }}
 
   npm-publish:
     needs: build
@@ -132,7 +133,7 @@ jobs:
         run: |
           TAG="${GITHUB_REF##refs/tags/v}"
           mkdir -p pkg
-          mv backlog* pkg/
+          mv dist/backlog* pkg/
           cp LICENSE README.md pkg/ 2>/dev/null || true
           cat <<EOF > pkg/package.json
           {
