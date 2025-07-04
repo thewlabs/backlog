@@ -46,10 +46,13 @@ jobs:
       - name: Compile standalone binary
         shell: bash
         run: |
-          bun build src/cli.ts --compile --minify --sourcemap --target=${{ matrix.target }} --define __EMBEDDED_VERSION__="\"${GITHUB_REF##refs/tags/v}\"" --outfile=${{ env.BIN }}
+          mkdir -p dist
+          bun build src/cli.ts --compile --minify --sourcemap --target=${{ matrix.target }} --define __EMBEDDED_VERSION__="\"${GITHUB_REF##refs/tags/v}\"" --outfile=dist/${{ env.BIN }}
       - name: Make binary executable (non-Windows)
         if: ${{ !contains(matrix.target,'windows') }}
-        run: chmod +x "${{ env.BIN }}"
+        run: chmod +x "dist/${{ env.BIN }}"
+      - name: Move binary to root for artifact
+        run: mv dist/${{ env.BIN }} ${{ env.BIN }}
       - uses: actions/upload-artifact@v4
         with:
           name: backlog-${{ matrix.target }}
@@ -127,6 +130,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: backlog-${{ matrix.target }}
+        timeout-minutes: 15
       - name: Prepare package
         shell: bash
         run: |
@@ -162,6 +166,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           path: release-assets
+        timeout-minutes: 15
       - name: Rename binaries for release
         run: |
           mkdir -p binaries
