@@ -1,16 +1,21 @@
-<h1 align="center">Backlog.md</h1>
-<p align="center">Markdown‑native Task Manager &amp; Kanban visualizer for any Git repository</p>
+# Backlog
 
-<p align="center">
-<code>npm i -g backlog.md</code> or <code>bun add -g backlog.md</code>
-</p>
+Markdown‑native Task Manager &amp; Kanban visualizer for any Git repository
+
+```sh
+pnpm i -g @thewlabs/backlog
+```
+or
+```sh
+bun add -g @thewlabs/backlog
+```
 
 ![Backlog demo GIF using: backlog board](./.github/backlog.gif)
 
 
 ---
 
-> **Backlog.md** turns any folder with a Git repo into a **self‑contained project board**  
+> **Backlog** turns any folder with a Git repo into a **self‑contained project board**  
 > powered by plain Markdown files and a zero‑config CLI.
 
 
@@ -37,8 +42,8 @@
 ### Five‑minute tour
 
 ```markdown
-# Make sure you have Backlog.md installed
-bun/npm i -g backlog.md
+# Make sure you have Backlog installed
+bun/pnpm i -g @thewlabs/backlog
 
 # 1. Bootstrap a repo + backlog
 backlog init hello-
@@ -65,7 +70,7 @@ All data is saved under `backlog` folder as human‑readable Markdown with the f
 
 Launch a modern, responsive web interface for visual task management:
 
-```bash
+```sh
 # Start the web server (opens browser automatically)
 backlog browser
 
@@ -130,7 +135,7 @@ Full help: `backlog --help`
 
 ## Configuration
 
-Backlog.md merges the following layers (highest → lowest):
+Backlog merges the following layers (highest → lowest):
 
 1. CLI flags  
 2. `backlog/config.yml` (per‑project)  
@@ -160,4 +165,4 @@ Key options:
 
 ## License
 
-Backlog.md is released under the **MIT License** – do anything, just give credit. See [LICENSE](LICENSE).
+Backlog is released under the **MIT License** – do anything, just give credit. See [LICENSE](LICENSE).
