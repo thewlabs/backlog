@@ -1,5 +1,5 @@
 {
-	"name": "backlog.md",
+	"name": "@thewlabs/backlog",
 	"version": "0.0.0",
 	"type": "module",
 	"bin": {
@@ -52,15 +52,19 @@
 			"biome check --write --files-ignore-unknown=true"
 		]
 	},
-	"author": "Alex Gavrilescu (https://github.com/MrLesk)",
+	"author": {
+		"name": "thewlabs",
+		"email": "contact@thewlabs.com",
+		"url": "https://github.com/thewlabs"
+	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/MrLesk/Backlog.md.git"
+		"url": "git+https://github.com/thewlabs/backlog.git"
 	},
 	"bugs": {
-		"url": "https://github.com/MrLesk/Backlog.md/issues"
+		"url": "https://github.com/thewlabs/backlog/issues"
 	},
-	"homepage": "https://backlog.md",
+	"homepage": "https://github.com/thewlabs/backlog#readme",
 	"keywords": [
 		"cli",
 		"markdown",
